@@ -1,0 +1,6 @@
+device;session_identifier;in_source_address;in_destination_address;in_protocol;in_source_port;in_destination_port;in_byte_cnt;in_pkt_cnt;out_source_address;out_destination_address;out_protocol;out_source_port;out_destination_port;out_byte_cnt;out_pkt_cnt
+{% for host, host_vars in hostvars.items() if not host=="localhost" -%} 
+{% for connection in host_vars.response.resource %}
+{{host_vars.inventory_hostname}};{{connection.session_identifier}};{{connection.in_source_address}};{{connection.in_destination_address}};{{connection.in_protocol}};{{connection.in_source_port}};{{connection.in_destination_port}};{{connection.in_byte_cnt}};{{connection.in_pkt_cnt}};{{connection.out_source_address}};{{connection.out_destination_address}};{{connection.out_protocol}};{{connection.out_source_port}};{{connection.out_destination_port}};{{connection.out_byte_cnt}};{{connection.out_pkt_cnt}}
+{% endfor %}
+{%- endfor -%}

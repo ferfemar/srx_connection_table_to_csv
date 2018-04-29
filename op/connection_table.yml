@@ -1,0 +1,34 @@
+---
+ConnectionTable:
+  rpc: get-flow-session-information
+  item: flow-session
+  key: 
+   - session-identifier
+  view: ConnectionView
+
+ConnectionView:
+  fields:
+   session_identifier: session-identifier
+  groups:
+   in: flow-information[direction='In']
+   out: flow-information[direction='Out']
+  fields_in:
+    in_source_address: source-address
+    in_destination_address: destination-address
+    in_source_port: source-port
+    in_destination_port: destination-port
+    in_byte_cnt: byte-cnt
+    in_pkt_cnt: pkt-cnt
+    in_protocol: protocol
+  fields_out:
+    out_source_address: source-address
+    out_destination_address: destination-address
+    out_source_port: source-port
+    out_destination_port: destination-port
+    out_byte_cnt: byte-cnt
+    out_pkt_cnt: pkt-cnt   
+    out_protocol: protocol    
+    
+    
+    
+

@@ -1,0 +1,30 @@
+---
+- name: SRX Connection table into CSV
+  hosts: SRX
+  gather_facts: False
+  roles: 
+   - Juniper.junos
+  vars_prompt:
+   - name: "ansible_user" 
+     prompt: "TACACS Username"
+     private: no
+   - name: "ansible_ssh_pass"
+     prompt: "TACACS Password"
+     private: yes
+  tasks:
+    - name: Retrieve connection table
+      juniper_junos_table:
+        file: "connection_table.yml"
+        path: "op/"
+        host: "{{ansible_host}}"
+      register: response
+    - name: Print response
+      debug:
+        var: response
+        verbosity: 2
+    - name: Outputs data into one report file
+      template: 
+       src: csv_template.j2
+       dest: "reports/connection_table.csv"
+      run_once: true
+      
