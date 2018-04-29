@@ -6,10 +6,10 @@
    - Juniper.junos
   vars_prompt:
    - name: "ansible_user" 
-     prompt: "TACACS Username"
+     prompt: "Username"
      private: no
    - name: "ansible_ssh_pass"
-     prompt: "TACACS Password"
+     prompt: "Password"
      private: yes
   tasks:
     - name: Retrieve connection table
